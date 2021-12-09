@@ -1,0 +1,79 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31313.79
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ofgem.API.GGSS.IntegrationTests", "Ofgem.API.GGSS.IntegrationTests\Ofgem.API.GGSS.IntegrationTests.csproj", "{173B6DE0-FDDC-443A-8A8A-6496DD6A61D8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ofgem.API.GGSS.UnitTests", "Ofgem.API.GGSS.UnitTests\Ofgem.API.GGSS.UnitTests.csproj", "{11B2D4CE-C61C-4E57-9654-7834BCC3E7C3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "nuget", "nuget", "{B0A34A33-ABCD-48EC-B235-DF869EC40E43}"
+	ProjectSection(SolutionItems) = preProject
+		build-application-nuget.yml = build-application-nuget.yml
+		build-domain-nuget.yml = build-domain-nuget.yml
+		nuget.config = nuget.config
+		Ofgem.API.GGSS.Application.nuspec = Ofgem.API.GGSS.Application.nuspec
+		Ofgem.API.GGSS.Domain.nuspec = Ofgem.API.GGSS.Domain.nuspec
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{1E13FB17-20AD-4F0A-A81A-3C44FCC9C384}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{73DED37A-FA0E-4D56-AA86-B70B89748AEC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ofgem.API.GGSS.Persistence", "Ofgem.API.GGSS.Persistence\Ofgem.API.GGSS.Persistence.csproj", "{30EB0FB9-5671-45D8-9D59-8F0382246D42}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ofgem.API.GGSS.Domain", "Ofgem.API.GGSS.Domain\Ofgem.API.GGSS.Domain.csproj", "{C5D22315-E430-4702-8E91-DD55DD9C659D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ofgem.API.GGSS.WebApi", "Ofgem.API.GGSS.WebApi\Ofgem.API.GGSS.WebApi.csproj", "{0729FEB5-FFB1-4E9A-A4F6-3F5255071B87}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ofgem.API.GGSS.Application", "Ofgem.API.GGSS.Application\Ofgem.API.GGSS.Application.csproj", "{F3000650-CC12-485E-921B-6DCAD61416ED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ofgem.API.GGSS.WebApi.UnitTests", "Ofgem.API.GGSS.WebApi.UnitTests\Ofgem.API.GGSS.WebApi.UnitTests.csproj", "{4C564BA0-D9B2-46B9-901D-6815221023A6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{173B6DE0-FDDC-443A-8A8A-6496DD6A61D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{173B6DE0-FDDC-443A-8A8A-6496DD6A61D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{173B6DE0-FDDC-443A-8A8A-6496DD6A61D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{173B6DE0-FDDC-443A-8A8A-6496DD6A61D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11B2D4CE-C61C-4E57-9654-7834BCC3E7C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11B2D4CE-C61C-4E57-9654-7834BCC3E7C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11B2D4CE-C61C-4E57-9654-7834BCC3E7C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11B2D4CE-C61C-4E57-9654-7834BCC3E7C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30EB0FB9-5671-45D8-9D59-8F0382246D42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30EB0FB9-5671-45D8-9D59-8F0382246D42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30EB0FB9-5671-45D8-9D59-8F0382246D42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30EB0FB9-5671-45D8-9D59-8F0382246D42}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5D22315-E430-4702-8E91-DD55DD9C659D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5D22315-E430-4702-8E91-DD55DD9C659D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5D22315-E430-4702-8E91-DD55DD9C659D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5D22315-E430-4702-8E91-DD55DD9C659D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0729FEB5-FFB1-4E9A-A4F6-3F5255071B87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0729FEB5-FFB1-4E9A-A4F6-3F5255071B87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0729FEB5-FFB1-4E9A-A4F6-3F5255071B87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0729FEB5-FFB1-4E9A-A4F6-3F5255071B87}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3000650-CC12-485E-921B-6DCAD61416ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3000650-CC12-485E-921B-6DCAD61416ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3000650-CC12-485E-921B-6DCAD61416ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3000650-CC12-485E-921B-6DCAD61416ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C564BA0-D9B2-46B9-901D-6815221023A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C564BA0-D9B2-46B9-901D-6815221023A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C564BA0-D9B2-46B9-901D-6815221023A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C564BA0-D9B2-46B9-901D-6815221023A6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{30EB0FB9-5671-45D8-9D59-8F0382246D42} = {73DED37A-FA0E-4D56-AA86-B70B89748AEC}
+		{C5D22315-E430-4702-8E91-DD55DD9C659D} = {1E13FB17-20AD-4F0A-A81A-3C44FCC9C384}
+		{F3000650-CC12-485E-921B-6DCAD61416ED} = {1E13FB17-20AD-4F0A-A81A-3C44FCC9C384}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FE6A71FD-57C4-4437-97C4-FA9C2D645495}
+	EndGlobalSection
+EndGlobal

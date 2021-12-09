@@ -1,0 +1,66 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>ad56fc49-b736-4ca7-a05f-498a7d0729dd</UserSecretsId>
+    <InvariantGlobalization>false</InvariantGlobalization>
+    <WebProject_DirectoryAccessLevelKey>0</WebProject_DirectoryAccessLevelKey>
+    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerfileRunEnvironmentFiles>Dockerfile.env</DockerfileRunEnvironmentFiles>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <NoWarn>1701;1702;4792</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="Contracts\**" />
+    <Compile Remove="Entities\**" />
+    <Compile Remove="Features\**" />
+    <Compile Remove="Models\**" />
+    <Compile Remove="Profiles\**" />
+    <Content Remove="Contracts\**" />
+    <Content Remove="Entities\**" />
+    <Content Remove="Features\**" />
+    <Content Remove="Models\**" />
+    <Content Remove="Profiles\**" />
+    <EmbeddedResource Remove="Contracts\**" />
+    <EmbeddedResource Remove="Entities\**" />
+    <EmbeddedResource Remove="Features\**" />
+    <EmbeddedResource Remove="Models\**" />
+    <EmbeddedResource Remove="Profiles\**" />
+    <None Remove="Contracts\**" />
+    <None Remove="Entities\**" />
+    <None Remove="Features\**" />
+    <None Remove="Models\**" />
+    <None Remove="Profiles\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.17.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.17" />
+    <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.2.7" />
+    <PackageReference Include="Microsoft.AspNetCore.JsonPatch" Version="5.0.6" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.15" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.17">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Configuration.AzureKeyVault" Version="3.1.17" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.13" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.4" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.12.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Ofgem.API.GGSS.Persistence\Ofgem.API.GGSS.Persistence.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Dockerfile.env">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+
+</Project>

@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<package>
+ <metadata>
+    <id>Ofgem.API.GGSS.Application</id>
+    <version>1.0.0</version>
+    <authors>Ofgem GGSS Development</authors>
+    <owners>Ofgem</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Ofgem.API.GGSS.Application</description>
+    <releaseNotes>Initial Release</releaseNotes>
+    <copyright>Copyright 2021</copyright>
+    <tags>Ofgem.API.GGSS.Application</tags>
+    <dependencies>
+      <group targetFramework="netcoreapp3.1">
+        <dependency id="AutoMapper" version="10.1.1" />
+        <dependency id="AutoMapper.Extensions.Microsoft.DependencyInjection" version="8.1.1" />
+        <dependency id="FluentValidation" version="10.3.0" />
+        <dependency id="FluentValidation.DependencyInjectionExtensions" version="10.3.0" />
+        <dependency id="Jil" version="2.17.0" />
+        <dependency id="MediatR.Extensions.Microsoft.DependencyInjection" version="9.0.0" />
+        <dependency id="Microsoft.AspNetCore.Hosting" version="2.2.7" />
+        <dependency id="Microsoft.Azure.KeyVault" version="3.0.5" />
+        <dependency id="Microsoft.Azure.Services.AppAuthentication" version="1.6.1" />
+        <dependency id="Microsoft.Extensions.Configuration.AzureKeyVault" version="3.1.17" />
+        <dependency id="Microsoft.Extensions.Hosting.Abstractions" version="5.0.0" />
+        <dependency id="Microsoft.Extensions.Logging.Abstractions" version="3.1.17" />
+        <dependency id="System.Text.Json" version="5.0.2" />
+        <dependency id="Ofgem.API.GGSS.Domain" version="1.3.2" />
+      </group>
+    </dependencies>
+  </metadata>
+    <files>
+        <file src="Ofgem.API.GGSS.Application\bin\Release\netcoreapp3.1\Ofgem.API.GGSS.Application.*" target="lib\netcoreapp3.1" />
+    </files>
+</package>

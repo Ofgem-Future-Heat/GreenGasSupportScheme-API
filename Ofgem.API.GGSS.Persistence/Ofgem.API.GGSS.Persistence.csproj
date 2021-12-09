@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\ApplicationDb\20210913150716_AddIsResponsiblePersonColumnToUser.cs" />
+    <Compile Remove="Migrations\ApplicationDb\20210913150716_AddIsResponsiblePersonColumnToUser.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.17" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.17" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.17">
+		  <PrivateAssets>all</PrivateAssets>
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="3.1.17" />
+		<PackageReference Include="Ofgem.Azure.SecureDbContext" Version="1.3.6" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Ofgem.API.GGSS.Application\Ofgem.API.GGSS.Application.csproj" />
+	</ItemGroup>
+	
+</Project>

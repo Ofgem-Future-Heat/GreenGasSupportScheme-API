@@ -1,0 +1,40 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Contracts\Infrastructure\**" />
+    <Compile Remove="Features\**" />
+    <Compile Remove="Models\Mail\**" />
+    <EmbeddedResource Remove="Contracts\Infrastructure\**" />
+    <EmbeddedResource Remove="Features\**" />
+    <EmbeddedResource Remove="Models\Mail\**" />
+    <None Remove="Contracts\Infrastructure\**" />
+    <None Remove="Features\**" />
+    <None Remove="Models\Mail\**" />
+  </ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="AutoMapper" Version="10.1.1" />
+		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
+		<PackageReference Include="FluentValidation" Version="10.3.0" />
+		<PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="10.3.0" />
+		<PackageReference Include="Jil" Version="2.17.0" />
+		<PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.2.7" />
+		<PackageReference Include="Microsoft.Azure.KeyVault" Version="3.0.5" />
+		<PackageReference Include="Microsoft.Azure.Services.AppAuthentication" Version="1.6.1" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.AzureKeyVault" Version="3.1.17" />
+		<PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="5.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="3.1.17" />
+		<PackageReference Include="System.Text.Json" Version="5.0.2" />
+		<PackageReference Include="runtime.fedora.24-x64.runtime.native.System.Security.Cryptography.OpenSsl" Version="4.3.3" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Ofgem.API.GGSS.Domain\Ofgem.API.GGSS.Domain.csproj" />
+	</ItemGroup>
+
+</Project>

@@ -1,0 +1,51 @@
+Organisation registration
+
+OrganisationType
+- Private
+- Other
+
+Company registration number
+01234567 or AC012345
+
+Companies House Address
+    "registered_office_address": {
+        "address_line_1": "string",
+        "address_line_2": "string",
+        "care_of": "string",
+        "country": "string",
+        "locality": "string",
+        "po_box": "string",
+        "postal_code": "string",
+        "premises": "string",
+        "region": "string"
+    },
+"registered_office_is_in_dispute": "boolean",
+check may be considered
+
+ResponsiblePerson
+- You
+- Other person
+
+From currently logged in user data
+- Name
+- Surname
+- TelephoneNumber
+
+- You
+1. Photographic identificationFile
+2. Bank statement or bill file
+3. Show summary / submit,,, save data
+
+Other person
+- Email address 
+=> person the needs to register/sign in 
+upon invitation email receipt
+
+When Signed in
+1. Letter of authority file
+2. Photographic identificationFile
+3. Bank statement or bill file
+4. Show summary / submit,,, save data
+
+API returns reference number format GEN-EAAA-HDJ2123F
+To be displayed on submission confirmation screen

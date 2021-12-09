@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package>
+ <metadata>
+    <id>Ofgem.API.GGSS.Domain</id>
+    <version>1.0.0</version>
+    <authors>Ofgem GGSS Development</authors>
+    <owners>Ofgem</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Ofgem.API.GGSS.Domain</description>
+    <releaseNotes>Initial Release</releaseNotes>
+    <copyright>Copyright 2021</copyright>
+    <tags>Ofgem.API.GGSS.Domain</tags>
+    <dependencies>
+      <group targetFramework="netcoreapp3.1">
+        <dependency id="MediatR" version="9.0.0" />
+        <dependency id="System.ComponentModel.Annotations" version="5.0.0" />
+      </group>
+    </dependencies>
+  </metadata>
+    <files>
+        <file src="Ofgem.API.GGSS.Domain\bin\Release\netcoreapp3.1\Ofgem.API.GGSS.Domain.*" target="lib\netcoreapp3.1" />
+    </files>
+</package>
