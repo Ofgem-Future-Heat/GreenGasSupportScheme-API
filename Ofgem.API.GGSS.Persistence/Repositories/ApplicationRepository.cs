@@ -51,5 +51,13 @@ namespace Ofgem.API.GGSS.Persistence.Repositories
 
             return await dataAsync;
         }
+
+        public async Task<Application.Entities.Application> GetById(Guid applicationId, CancellationToken cancellationToken = default)
+        {
+            var context = await _factory.CreateApplicationContextAsync(cancellationToken);
+            return await context.Applications.Include(a => a.Organisation)
+                .ThenInclude(o => o.ResponsiblePeople)
+                .SingleOrDefaultAsync(a => a.Id == applicationId);
+        }
     }
 }

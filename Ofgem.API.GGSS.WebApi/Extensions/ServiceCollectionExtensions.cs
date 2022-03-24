@@ -26,10 +26,6 @@ namespace Microsoft.Extensions.DependencyInjection
             {
                 services.AddDistributedMemoryCache();
             }
-            else
-            {
-                services.AddOfgemCloudApplicationInsightsTelemetry();
-            }
 
             services.AddControllers()
                 .AddNewtonsoftJson()

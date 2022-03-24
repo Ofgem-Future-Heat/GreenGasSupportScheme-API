@@ -49,7 +49,16 @@ namespace Ofgem.API.GGSS.Application.Handlers
                 PhotoId = result.Value?.PhotoId,
                 ProofOfAddress = result.Value?.ProofOfAddress,
                 LetterOfAuthority = result.Value?.LetterOfAuthorisation,
-                LegalDocument = result.Value?.LegalDocument
+                LegalDocument = result.Value?.LegalDocument,
+                IsAuthorisedSignatory = result.ResponsiblePeople.Any(rp => rp.UserId.ToString() == request.UserId),
+                OrganisationUsers = result.UserOrganisations
+                    .Where(uo => uo.UserId != null).Select(uo => new UserValue
+                    {
+                        EmailAddress = uo.User.Value.EmailAddress,
+                        Name = uo.User.Value.Name,
+                        Surname = uo.User.Value.Surname
+                    }).ToList(),
+                LastModified = result.Value.LastModified
             };
         }
     }

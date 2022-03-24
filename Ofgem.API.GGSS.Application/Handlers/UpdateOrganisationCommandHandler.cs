@@ -25,12 +25,15 @@ namespace Ofgem.API.GGSS.Application.Handlers
             if (organisation == null)
             {
                 updateOrganisationResponse.Errors.Add("ORGANISATION_NOT_FOUND");
+
                 return updateOrganisationResponse;
             }
 
             organisation.Value.OrganisationStatus = request.OrganisationStatus;
+            organisation.Value.LastModified = DateTime.Now.ToString("s");
 
-            await _organisationRepository.UpdateAsync(organisation, token: cancellationToken);
+            Guid userId = request.UserId == null ? default : Guid.Parse(request.UserId);
+            await _organisationRepository.UpdateAsync(organisation, userId, cancellationToken);
             
             return updateOrganisationResponse;
         }
@@ -40,6 +43,7 @@ namespace Ofgem.API.GGSS.Application.Handlers
     {
         public string OrganisationId { get; set; }
         public string OrganisationStatus { get; set; }
+        public string UserId { get; set; }
     }
     
     public class UpdateOrganisationResponse

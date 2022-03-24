@@ -7,6 +7,7 @@ using MediatR;
 using Ofgem.API.GGSS.Application.Contracts.Persistence;
 using Ofgem.API.GGSS.Application.Helpers;
 using Ofgem.API.GGSS.Domain.Commands.Applications;
+using Ofgem.API.GGSS.Domain.Enums;
 using Ofgem.API.GGSS.Domain.Responses.Applications;
 
 namespace Ofgem.API.GGSS.Application.Handlers
@@ -34,7 +35,7 @@ namespace Ofgem.API.GGSS.Application.Handlers
                         {
                             ApplicationId = a.Id.ToString(),
                             OrganisationName = a.Organisation.Value.Name,
-                            ApplicationStatus = a.Value.Status.ToString(),
+                            ApplicationStatus = MapApplicationStatusHelper.GetMappedStatus(a).ToString(),
                             LastModified = a.Value.LastModified ?? DateTime.Now.ToString("s"),
                             Reference = ReferenceNumber.GetApplicationReference(a.Id, a.Value.Reference)
                         })

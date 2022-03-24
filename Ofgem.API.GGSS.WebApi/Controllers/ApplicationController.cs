@@ -44,7 +44,8 @@ namespace Ofgem.API.GGSS.WebApi.Controllers
         {
             var command = new RetrieveApplication()
             {
-                ApplicationId = applicationId
+                ApplicationId = applicationId,
+                UserId = Request.Query["userId"]
             };
 
             var response = await _mediator.Send(command);

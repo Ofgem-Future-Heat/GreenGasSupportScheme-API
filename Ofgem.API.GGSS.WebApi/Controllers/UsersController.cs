@@ -62,5 +62,18 @@ namespace Ofgem.API.GGSS.WebApi.Controllers
 
             return Ok(response);
         }
+        
+        [HttpPost("invite")]
+        public async Task<IActionResult> InviteUser([FromBody] InviteUserToOrganisation request)
+        {
+            var response = await _mediator.Send(request);
+
+            if (response.Errors.Any())
+            {
+                return NotFound();
+            }
+
+            return Ok(response);
+        }
     }
 }

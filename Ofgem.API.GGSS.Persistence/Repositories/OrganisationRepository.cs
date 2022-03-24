@@ -29,8 +29,9 @@ namespace Ofgem.API.GGSS.Persistence.Repositories
 
             return await context.Organisations
                 .Include(o => o.ResponsiblePeople)
+                .Include(o => o.UserOrganisations)
                 .Include(o => o.Applications)
-                .Where(o => o.ResponsiblePeople.Any(r => r.UserId.ToString() == userId))
+                .Where(o => o.ResponsiblePeople.Any(r => r.UserId.ToString() == userId) || o.UserOrganisations.Any(r => r.UserId.ToString() == userId))
                 .ToListAsync(cancellationToken);
         }
 
@@ -50,6 +51,8 @@ namespace Ofgem.API.GGSS.Persistence.Repositories
                 .ThenInclude(r => r.User)
                 .Include(o => o.ResponsiblePeople)
                 .ThenInclude(r=> r.Documents)
+                .Include(o => o.UserOrganisations)
+                .ThenInclude(uo => uo.User)
                 .ToListAsync();
         }
 

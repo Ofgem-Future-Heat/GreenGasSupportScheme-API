@@ -19,5 +19,6 @@ namespace Ofgem.API.GGSS.Domain.ModelValues
         public StageOneValue StageOne { get; set; } = new StageOneValue();
         public StageTwoValue StageTwo { get; set; } = new StageTwoValue();
         public StageThreeValue StageThree { get; set; } = new StageThreeValue();
+        public bool CanSubmit { get; set; } = false;
     }
 }

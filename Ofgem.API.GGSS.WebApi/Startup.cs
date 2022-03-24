@@ -28,6 +28,7 @@ namespace Ofgem.API.GGSS.WebApi
             services.AddPersistenceServices(Configuration);
             services.AddSingleton<ITelemetryInitializer, CustomTelemetryInitialiser>();
             services.AddOfgemCloudApplicationInsightsTelemetry();
+            services.AddApplicationInsightsKubernetesEnricher();
 
             services.ConfigureServices(this.Configuration, this.HostingEnvironment);
         }

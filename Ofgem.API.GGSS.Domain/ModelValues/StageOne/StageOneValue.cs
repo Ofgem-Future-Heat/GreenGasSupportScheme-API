@@ -11,5 +11,6 @@ namespace Ofgem.API.GGSS.Domain.ModelValues.StageOne
         public ProductionDetailsValue ProductionDetails { get; set; } =
             new ProductionDetailsValue();
 
+        public string FirstSubmissionDateTime { get; set; }
     }
 }

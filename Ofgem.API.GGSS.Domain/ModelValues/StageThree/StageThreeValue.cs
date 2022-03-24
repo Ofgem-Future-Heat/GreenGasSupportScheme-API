@@ -2,6 +2,9 @@
 {
     public class StageThreeValue
     {
+        public OrganisationDetailsValue OrganisationDetails { get; set; } 
+            = new OrganisationDetailsValue();
+        
         public FeedstockDetailsValue FeedstockDetails { get; set; } =
             new FeedstockDetailsValue();
     }

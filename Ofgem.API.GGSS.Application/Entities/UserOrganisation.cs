@@ -13,5 +13,6 @@ namespace Ofgem.API.GGSS.Application.Entities
         public User User { get; set; }
         public Guid OrganisationId { get; set; }
         public Organisation Organisation { get; set; }
+        public string InvitedEmail { get; set; }
     }
 }

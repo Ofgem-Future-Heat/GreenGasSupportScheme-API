@@ -22,6 +22,7 @@ namespace Ofgem.API.GGSS.IntegrationTests.Controllers
     public class UsersControllerTests : IClassFixture<WebApiFactory<Startup>>
     {
         private readonly WebApiFactory<Startup> _factory;
+        private HttpClient _client;
 
         public UsersControllerTests(WebApiFactory<Startup> factory)
         {
@@ -73,12 +74,12 @@ namespace Ofgem.API.GGSS.IntegrationTests.Controllers
         }
 
         [Fact]
-        public async Task ReturnsListOfOrganisationsForUser()
+        public async Task ReturnsListOfOrganisationsForAuthorisedSignatory()
         {
             var client = _factory.GetAuthorisedClient();
             var userId = Guid.NewGuid();
             var userRepository = _factory.Services.CreateScope().ServiceProvider.GetService<IUserRepository>();
-            var user = await userRepository.AddAsync(new User()
+            await userRepository.AddAsync(new User()
             {
                 Id = userId
             });
@@ -96,6 +97,42 @@ namespace Ofgem.API.GGSS.IntegrationTests.Controllers
                 _factory.Services.CreateScope().ServiceProvider.GetService<IResponsiblePersonRepository>();
 
             await responsiblePersonRepository.AddAsync(new ResponsiblePerson()
+            {
+                Id = Guid.NewGuid(),
+                UserId = userId,
+                OrganisationId = organisation.Id
+            });
+
+            var response = await client.GetAsync($"/users/{userId}/organisations");
+            var deserialisedResponse = await response.Content.ReadAsAsync<GetOrganisationsForUserResponse>();
+
+            deserialisedResponse.Organisations.Should().Contain(o => o.OrganisationName == organisation.Value.Name);
+        }
+        
+        [Fact]
+        public async Task ReturnsListOfOrganisationsForAAdminUsers()
+        {
+            var client = _factory.GetAuthorisedClient();
+            var userId = Guid.NewGuid();
+            var userRepository = _factory.Services.CreateScope().ServiceProvider.GetService<IUserRepository>();
+            await userRepository.AddAsync(new User()
+            {
+                Id = userId
+            });
+            var organisationRepository =
+                _factory.Services.CreateScope().ServiceProvider.GetService<IOrganisationRepository>();
+            var organisation = await organisationRepository.AddAsync(new Organisation()
+            {
+                Value = new OrganisationValue()
+                {
+                    Name = "Organisation name",
+                }
+            });
+
+            var userOrganisationRepository =
+                _factory.Services.CreateScope().ServiceProvider.GetService<IUserOrganisationRepository>();
+
+            await userOrganisationRepository.AddAsync(new UserOrganisation()
             {
                 Id = Guid.NewGuid(),
                 UserId = userId,
@@ -135,6 +172,78 @@ namespace Ofgem.API.GGSS.IntegrationTests.Controllers
             var response = JsonConvert.DeserializeObject<FindUserResponse>(content);
 
             response.UserId.Should().Be(user.Id.ToString());
+        }
+
+        [Fact]
+        public async Task InviteUser_ReturnsInvitationResult_WhenUserExists()
+        {
+            var email = $"{Guid.NewGuid()}@test.com";
+            var organisationId = Guid.NewGuid();
+
+            SetupUser(email);
+            SetupOrganisation(organisationId);
+            SetUpClient();
+            
+            var result = await _client.PostAsJsonAsync("/users/invite", new
+            {
+                OrganisationId = organisationId,
+                UserEmail = email
+            });
+
+            var content = await result.Content.ReadAsStringAsync();
+            var response = JsonConvert.DeserializeObject<InviteUserToOrganisationResponse>(content);
+
+            response.InvitationResult.Should().Be("USER_ADDED");
+            response.InvitationId.Should().BeNullOrEmpty();
+            
+        }
+        
+        [Fact]
+        public async Task InviteUser_ReturnsInvitationResultAndInvitationId_WhenUserDoesNotExists()
+        {
+            var email = $"{Guid.NewGuid()}@test.com";
+            var organisationId = Guid.NewGuid();
+
+            SetupOrganisation(organisationId);
+            SetUpClient();
+            
+            var result = await _client.PostAsJsonAsync("/users/invite", new
+            {
+                OrganisationId = organisationId,
+                UserEmail = email
+            });
+
+            var content = await result.Content.ReadAsStringAsync();
+            var response = JsonConvert.DeserializeObject<InviteUserToOrganisationResponse>(content);
+
+            response.InvitationResult.Should().Be("USER_NEEDS_TO_REGISTER");
+            response.InvitationId.Should().NotBeNullOrEmpty();
+        }
+
+        private void SetUpClient()
+        {
+            _client = _factory.GetAuthorisedClient();
+        }
+
+        private async void SetupUser(string email)
+        {
+            var userRepository = _factory.Services.CreateScope().ServiceProvider.GetService<IUserRepository>();
+            await userRepository.AddAsync(new User()
+            {
+                Value = new UserValue()
+                {
+                    EmailAddress = email
+                }
+            });
+        }
+
+        private async void SetupOrganisation(Guid organisationId)
+        {
+            var organisationRepository = _factory.Services.CreateScope().ServiceProvider.GetService<IOrganisationRepository>();
+            await organisationRepository.AddAsync(new Organisation()
+            {
+                Id = organisationId
+            });
         }
     }
 }

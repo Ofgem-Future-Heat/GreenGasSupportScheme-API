@@ -42,7 +42,8 @@ namespace Ofgem.API.GGSS.WebApi.Controllers
         {
             var request = new RetrieveOrganisationDetails()
             {
-                OrganisationId = organisationId
+                OrganisationId = organisationId,
+                UserId = Request.Query["userId"]
             };
 
             var response = await _mediator.Send(request);
@@ -61,7 +62,8 @@ namespace Ofgem.API.GGSS.WebApi.Controllers
             var response = await _mediator.Send(new UpdateOrganisation()
             {
                 OrganisationId = organisationId,
-                OrganisationStatus = request.organisationStatus
+                OrganisationStatus = request.OrganisationStatus,
+                UserId = request.UserId
             });
 
             if (response.Errors.Contains("ORGANISATION_NOT_FOUND"))
@@ -74,7 +76,8 @@ namespace Ofgem.API.GGSS.WebApi.Controllers
 
         public class UpdateOrganisationRequest
         {
-            public string organisationStatus { get; set; }
+            public string OrganisationStatus { get; set; }
+            public string UserId { get; set; }
         }
         
     }

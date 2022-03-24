@@ -20,5 +20,8 @@ namespace Ofgem.API.GGSS.Domain.Responses.Organisations
         public DocumentValue LetterOfAuthority { get; set; }
         public DocumentValue LegalDocument { get; set; }
         public string OrganisationStatus { get; set; }
+        public List<UserValue> OrganisationUsers { get; set; }
+        public bool IsAuthorisedSignatory { get; set; }
+        public string LastModified { get; set; }
     }
 }

@@ -45,6 +45,7 @@ namespace Ofgem.API.GGSS.Application.Handlers
             {
                 Id = Guid.NewGuid(),
                 OrganisationId = Guid.Parse(request.OrganisationId),
+                InvitedEmail = request.UserEmail
             }, token: cancellationToken);
 
             return new InviteUserToOrganisationResponse()
@@ -63,9 +64,9 @@ namespace Ofgem.API.GGSS.Application.Handlers
     
     public class InviteUserToOrganisationResponse
     {
-        private List<string> Errors { get; set; } = new List<string>();
+        public List<string> Errors { get; set; } = new List<string>();
         
-        public string InvitationResult { get; set; } // USER_ADDED || USER_REQUIRES_ACCOUNT
+        public string InvitationResult { get; set; }
 
         public string InvitationId { get; set; }
     }

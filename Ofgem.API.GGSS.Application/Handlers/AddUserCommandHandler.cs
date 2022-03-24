@@ -47,8 +47,12 @@ namespace Ofgem.API.GGSS.Application.Handlers
             if (!String.IsNullOrEmpty(request.InvitationId))
             {
                 var userOrganisation = await _userOrganisationRepository.GetByIdAsync(Guid.Parse(request.InvitationId));
-                userOrganisation.UserId = createdUser.Id;
-                await _userOrganisationRepository.UpdateAsync(userOrganisation, createdUser.Id, cancellationToken);
+
+                if (userOrganisation.UserId == null && userOrganisation.InvitedEmail == request.Email)
+                {
+                    userOrganisation.UserId = createdUser.Id;
+                    await _userOrganisationRepository.UpdateAsync(userOrganisation, createdUser.Id, cancellationToken);
+                }
             }
             
             return new AddUserResponse()

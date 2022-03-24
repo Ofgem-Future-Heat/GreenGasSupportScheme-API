@@ -62,7 +62,8 @@ namespace Ofgem.API.GGSS.UnitTests.Application.Handlers
             var userId = Guid.NewGuid();
             var organisationId = Guid.NewGuid();
             var associationId = Guid.NewGuid();
-
+            var userEmail = "match@test.com";
+            
             userRepository.Setup(u => u.ListAllAsync(It.IsAny<CancellationToken>()))
                 .ReturnsAsync(new List<User>()
                 {
@@ -78,7 +79,7 @@ namespace Ofgem.API.GGSS.UnitTests.Application.Handlers
 
             userOrganisationRepository.Setup(u =>
                 u.AddAsync(It.Is<UserOrganisation>(
-                        e => e.UserId == null && e.OrganisationId == organisationId), It.IsAny<Guid>(),
+                        e => e.UserId == null && e.OrganisationId == organisationId && e.InvitedEmail == userEmail), It.IsAny<Guid>(),
                     It.IsAny<CancellationToken>())).ReturnsAsync(new UserOrganisation()
             {
                 Id = associationId
@@ -89,7 +90,7 @@ namespace Ofgem.API.GGSS.UnitTests.Application.Handlers
             var request = new InviteUserToOrganisation()
             {
                 OrganisationId = organisationId.ToString(),
-                UserEmail = "match@test.com"
+                UserEmail = userEmail
             };
 
             var result = await handler.Handle(request, CancellationToken.None);

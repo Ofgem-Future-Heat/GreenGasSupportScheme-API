@@ -102,17 +102,18 @@ namespace Ofgem.API.GGSS.IntegrationTests.Controllers
             var request = new HttpRequestMessage()
             {
                 Method = new HttpMethod("PATCH"),
-                RequestUri = new Uri($"{_client.BaseAddress}Organisation/{_organisationId.ToString()}/details"),
+                RequestUri = new Uri($"{_client.BaseAddress}Organisation/{_organisationId}/details"),
                 Content = new StringContent(JsonConvert.SerializeObject(data), Encoding.Default, "application/json"),
             };
 
             await _client.SendAsync(request);
             
-            var response = await _client.GetAsync($"Organisation/{_organisationId.ToString()}/details");
+            var response = await _client.GetAsync($"Organisation/{_organisationId}/details");
 
             var updatedOrganisation = JsonConvert.DeserializeObject<RetrieveOrganisationDetailsResponse>(await response.Content.ReadAsStringAsync());
 
             updatedOrganisation.OrganisationStatus.Should().Be("Verified");
+            DateTime.Parse(updatedOrganisation.LastModified).Should().BeAfter(new DateTime(2020, 01, 01));
         }
         
         private void SetUpTheClient()
@@ -124,7 +125,10 @@ namespace Ofgem.API.GGSS.IntegrationTests.Controllers
             var repository = _factory.Services.CreateScope().ServiceProvider.GetService<IOrganisationRepository>();
             var createdOrganisation = await repository.AddAsync(new Organisation()
             {
-                Value = new OrganisationValue(),
+                Value = new OrganisationValue()
+                {
+                    LastModified = new DateTime(2020, 01, 01).ToString("s")
+                },
                 Applications = new List<Application.Entities.Application>()
                 {
                     new Application.Entities.Application()

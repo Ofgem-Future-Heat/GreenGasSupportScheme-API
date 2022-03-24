@@ -7,5 +7,6 @@ namespace Ofgem.API.GGSS.Domain.Commands.Applications
     public class RetrieveApplication : IRequest<RetrieveApplicationResponse>
     {
         public string ApplicationId { get; set; }
+        public string UserId { get; set; }
     }
 }
